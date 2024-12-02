@@ -7,6 +7,28 @@ I wanted to design a device that can act as a clock and a thermometer. This was 
 - 7 Segment 4 Digit display
 - Pushbutton, Resistors, internal LED
 
+
+# Functionality
+
+## Getting the time:
+The ESP32 connects to the local Wifi and calls the time from a Network Time Protocol server (pool.ntp.org).
+
+## Measuring temperature:
+The DHT11 module has three pins: 
+- VCC (Power) -> here 3.3 V
+- Ground
+- Data -> temperature and humidity readings as a digital signal
+
+Temperature inside the device is measured with a Thermistor - a type of resistor whose resistance changes significantly with temperature. This is based on semiconductors. 
+
+## The 7 segment 4 digit display:
+Each segment has an associated pin, allowing me to turn it on or off. More interestingly, there is four additional pins - one for each digit. By rapidly cycling through all four of these, it is possible to create the illusion that all 4 digits are displayed simultaneously. However, with this wiring approach, we only require 11 pins to effectively control all 28 segments.  
+
+Each segment is an individual LED (Light Emitting Diode). LEDs emit light when current flows through them in the forward direction. LEDs are made of semiconductors, typically materials like gallium arsenide (GaAs) or gallium phosphide (GaP). LEDs are embedded in a plastic or epoxy casing, which acts as a lens to focus and diffuse the light.
+
+## Switching with a button
+Here we use a debounce detection to change the state of a variable everytime the button is pressed.
+
 # Wirings:
 {
   "components": [
@@ -78,18 +100,3 @@ I wanted to design a device that can act as a clock and a thermometer. This was 
     }
   ]
 }
-
-# Functionality
-
-## Getting the time:
-The ESP32 connects to the local Wifi and calls the time from a Network Time Protocol server (pool.ntp.org).
-
-## Measuring temperature:
-The DHT11 module has three pins: 
-- VCC (Power) -> here 3.3 V
-- Ground
-- Data -> temperature and humidity readings as a digital signal
-
-Temperature inside the device is measured with a Thermistor - a type of resistor whose resistance changes significantly with temperature. This is based on semiconductors. 
-
-## Switching with a button
