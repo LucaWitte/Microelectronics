@@ -1,0 +1,85 @@
+# The Idea
+
+I wanted to design a device that can act as a clock and a thermometer. This was a fun little experiment for me. I learned multiple things by including the following components:
+
+- ESP32 (I do make use of its WLAN functionality here)
+- DHT11 (Temperature and Humidity Sensor)
+- 7 Segment 4 Digit display
+- Pushbutton, Resistors, internal LED
+
+# Wirings:
+{
+  "components": [
+    {
+      "name": "ESP32",
+      "type": "microcontroller",
+      "pins": {
+        "GND": "Breadboard-GND",
+        "3.3V": "Breadboard-3.3V",
+        "4": "7Segment-pinA",
+        "16": "7Segment-pinB",
+        "17": "7Segment-pinC",
+        "32": "7Segment-pinD",
+        "13": "7Segment-pinE",
+        "5": "7Segment-pinF",
+        "18": "7Segment-pinG",
+        "12": "7Segment-pinDP",
+        "14": "7Segment-D1",
+        "27": "7Segment-D2",
+        "26": "7Segment-D3",
+        "25": "7Segment-D4",
+        "15": "DHT11-Signal",
+        "21": "Button",
+        "2": "LED"
+      }
+    },
+    {
+      "name": "DHT11",
+      "type": "sensor",
+      "pins": {
+        "VCC": "Breadboard-3.3V",
+        "GND": "Breadboard-GND",
+        "Signal": "ESP32-15"
+      }
+    },
+    {
+      "name": "7SegmentDisplay",
+      "type": "display",
+      "pins": {
+        "A": "ESP32-4",
+        "B": "ESP32-16",
+        "C": "ESP32-17",
+        "D": "ESP32-32",
+        "E": "ESP32-13",
+        "F": "ESP32-5",
+        "G": "ESP32-18",
+        "DP": "ESP32-12",
+        "D1": "ESP32-14",
+        "D2": "ESP32-27",
+        "D3": "ESP32-26",
+        "D4": "ESP32-25"
+      }
+    },
+    {
+      "name": "Button",
+      "type": "pushbutton",
+      "pins": {
+        "OneSide": "Breadboard-GND",
+        "OtherSide": "ESP32-21"
+      }
+    },
+    {
+      "name": "LED",
+      "type": "LED",
+      "pins": {
+        "Anode": "ESP32-2",
+        "Cathode": "Breadboard-GND"
+      }
+    }
+  ]
+}
+
+# Functionality
+
+## Getting the time:
+The ESP32 connects to the local Wifi and calls the time from a time server ()
