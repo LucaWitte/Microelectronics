@@ -82,4 +82,14 @@ I wanted to design a device that can act as a clock and a thermometer. This was 
 # Functionality
 
 ## Getting the time:
-The ESP32 connects to the local Wifi and calls the time from a time server ()
+The ESP32 connects to the local Wifi and calls the time from a Network Time Protocol server (pool.ntp.org).
+
+## Measuring temperature:
+The DHT11 module has three pins: 
+- VCC (Power) -> here 3.3 V
+- Ground
+- Data -> temperature and humidity readings as a digital signal
+
+Temperature inside the device is measured with a Thermistor - a type of resistor whose resistance changes significantly with temperature. This is based on semiconductors. 
+
+## Switching with a button
